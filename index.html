@@ -13,6 +13,8 @@
 <embed src="" width="400" height="300" id="embed" style="display:none">
 
 <button id="contentToggle" onClick="change()">Search TV Shows</button>
+  <button id="fullscreenButton">Toggle Fullscreen</button>
+
   <script>
     const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -67,6 +69,22 @@ searchInput.addEventListener('keydown', (e) => {
     search(e.target.value);
   }
 });
+
+    function toggleFullscreen() {
+  const embedElement = document.getElementById("embed");
+
+  if (!document.fullscreenElement) {
+    embedElement.requestFullscreen().catch((err) => {
+      console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+const fullscreenButton = document.getElementById("fullscreenButton"); 
+fullscreenButton.addEventListener("click", toggleFullscreen);
+    
   </script>
 
   </body>
